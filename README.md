@@ -20,7 +20,9 @@ sudo mysql -u root
 ```
 
 ## mysql 프로그램 실행
+### 현재 접속한 사용자 보기
 ```mysql
-# 현재 접속한 사용자 보기
 select user();
+# or
+\s
 ```
