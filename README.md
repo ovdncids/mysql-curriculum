@@ -112,6 +112,6 @@ select members.name from (
 - members.name
 + members.*
 ```
-* ❔ 문제2: members를 문제1과 같이 추가 하려면
+* ❔ 문제2: members를 문제1과 같이 출력 하려면
 
 ### 검색 하기
