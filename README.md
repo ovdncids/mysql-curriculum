@@ -7,10 +7,12 @@
 # 설치
 brew install mariadb
 
-# DB 실행
+# DB 실행 (재시작 하여도 DB 자동 실행)
 brew services start mariadb
-# DB 종료
+# DB 종료 (재시작 하면 DB를 실행하지 않는다)
 brew services stop mariadb
+# DB 1회성 실행 (재시작과 상관없이 1회성으로 DB를 실행한다)
+mysql.server start
 
 # DB 접속 프로그램 실행
 mysql
