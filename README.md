@@ -41,7 +41,7 @@ Login: user@localhost
 
 ## select문과 친해지기
 ### 1행(row) 출력
-| One | Two | Three |
+| 제목1 | 제목2 | 제목3 |
 |---|:---|:---|
 | 1 | 2 | 삼 |
 ```sql
@@ -52,34 +52,34 @@ select 1 as One, '2' as Two, '삼' as Three;
 ```
 
 ### 2행(row) 출력
-| One | Two | Three |
+| 제목1 | 제목2 | 제목3 |
 |---|:---|:---|
 | 1 | 2 | 삼 |
 | four | 오 | 6 |
 ```sql
-select 1 as One, '2' as Two, '삼' as Three
+select 1 as 제목1, '2' as 제목2, '삼' as 제목3
 union
 select 'four', '오', 6;
 ```
 
 * ❕ 중요: 동일한 행을 2번 쓴다면
   ```sql
-  select 1 as One, '2' as Two, '삼' as Three
+  select 1 as 제목1, '2' as 제목2, '삼' as 제목3
   union
   select 'four', '오', 6
   union
   select 'four', '오', 6;
   ```
   ```sql
-  select 1 as One, '2' as Two, '삼' as Three
+  select 1 as 제목1, '2' as 제목2, '삼' as 제목3
   union all
   select 'four', '오', 6
   union all
   select 'four', '오', 6;
   ```
 
-* ❔ 문제: 다음과 같이 만들기
-  | Name | Age |
+* ❔ 문제1: 다음과 같이 만들기
+  | name | age |
   |---|:---|
   | 홍길동 | 39 |
   | 김삼순 | 33 |
@@ -89,7 +89,7 @@ select 'four', '오', 6;
 * <details><summary>정답</summary>
 
   ```sql
-  select '홍길동' as Name, 39 as Age
+  select '홍길동' as name, 39 as age
   union all
   select '김삼순', 33
   union all
@@ -100,3 +100,18 @@ select 'four', '오', 6;
   select '권명순', 10;
   ```
 </details>
+
+### 필요한 열만 보기
+```sql
+select members.name from (
+  select '홍길동' as name, 39 as age
+) members;
+```
+* 모든 열 보기
+```diff
+- members.name
++ members.*
+```
+* ❔ 문제2: members를 문제1과 같이 추가 하려면
+
+### 검색 하기
