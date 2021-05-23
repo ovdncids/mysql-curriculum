@@ -77,3 +77,10 @@ select 'four', '오', 6;
   union all
   select 'four', '오', 6;
   ```
+
+문제 만들기
+
+| One | Two | Three |
+|---|:---|:---|
+| 1 | 2 | 삼 |
+| four | 오 | 6 |
