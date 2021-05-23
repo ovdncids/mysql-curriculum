@@ -33,3 +33,20 @@ select user();
 
 ### Mac용 mysql 접속 프로그램
 * https://sequelpro.com/download
+* https://dev.mysql.com/downloads/workbench
+```mysql
+Server name: localhost
+Login: user@localhost
+```
+
+## select문과 친해지기
+### 1행(row) 출력
+| One | Two | Three |
+|---|:---|:---|
+| 1 | '2' | '삼' |
+```sql
+# 1, '2', '삼' 출력
+select 1, '2', '삼';
+# 열(column) 제목 넣기
+select 1 as One, '2' as Two, '삼' as Three;
+```
