@@ -78,9 +78,25 @@ select 'four', '오', 6;
   select 'four', '오', 6;
   ```
 
-문제 만들기
+* ❔ 문제: 다음과 같이 만들기
+  | Name | Age |
+  |---|:---|
+  | 홍길동 | 39 |
+  | 김삼순 | 33 |
+  | 홍명보 | 44 |
+  | 박지삼 | 22 |
+  | 권명순 | 10 |
+* <details><summary>정답</summary>
 
-| One | Two | Three |
-|---|:---|:---|
-| 1 | 2 | 삼 |
-| four | 오 | 6 |
+  ```sql
+  select '홍길동' as Name, 39 as Age
+  union all
+  select '김삼순', 33
+  union all
+  select '홍명보', 44
+  union all
+  select '박지삼', 22
+  union all
+  select '권명순', 10;
+  ```
+</details>
