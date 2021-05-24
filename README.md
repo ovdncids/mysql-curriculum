@@ -168,3 +168,64 @@ where 1 = 1 or (
   members.name = '홍길동' or members.age = 33
 );
 ```
+
+## 정렬 하기(order by문)
+```sql
+select members.* from (
+  select '홍길동' as name, 39 as age
+  union all
+  select '김삼순', 33
+  union all
+  select '홍명보', 44
+  union all
+  select '박지삼', 22
+  union all
+  select '박지삼', 11
+  union all
+  select '권명순', 10
+  union all
+  select '권명순', 20
+) members
+order by members.name;
+```
+* 정렬 추가 하기(asc문, desc문)
+```diff
+- order by members.name;
+```
+```sql
+order by members.name, members.age desc;
+order by members.name desc, members.age desc;
+```
+
+## 출력 개수 정하기(limit문)
+```sql
+select members.* from (
+  select '홍길동' as name, 39 as age
+  union all
+  select '김삼순', 33
+  union all
+  select '홍명보', 44
+  union all
+  select '박지삼', 22
+  union all
+  select '권명순', 10
+) members
+limit 0, 10;
+  # 첫 레코드는 0부터 시작 된다
+  # 첫 레코드 부터 10개를 보여준다
+```
+* 출력 위치와 개수 수정 하기
+```diff
+- limit 0, 10;
+```
+```sql
+limit 2, 1;
+limit 4, 2;
+```
+
+### 검색, 정렬, 출력 동시에 사용하기
+```sql
+where 1 = 1
+order by members.name
+limit 0, 10;
+```
