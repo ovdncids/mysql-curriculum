@@ -1,5 +1,5 @@
 # Summary
 
-* [Javascript](Javascript.md)
+* [SELECT](SELECT.md)
 
-* [내장 함수](InnerFunctions.md)
+* [TABLE](TABLE.md)
