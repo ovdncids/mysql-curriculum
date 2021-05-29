@@ -168,6 +168,11 @@ where 1 = 1 or (
   members.name = '홍길동' or members.age = 33
 );
 ```
+* 조건 상세 추가 하기(like문 또는 in문)
+```sql
+where members.name like '%홍%';
+where members.name in ('홍길동', '박지삼');
+```
 
 ## 정렬 하기(order by문)
 ```sql
