@@ -1,6 +1,6 @@
 # TABLE
 
-## 정보 보기
+## Database 정보 보기
 ```sql
 # Database 목록 보기
 show databases;
@@ -12,3 +12,50 @@ show tables;
 ```
 
 ## 테이블 만들기(create table문)
+```sql
+create table members (
+  pk int AUTO_INCREMENT PRIMARY KEY,
+  name nvarchar(200) not null,
+  age int null
+);
+```
+
+### 테이블 삭제(drop table문)
+```sql
+drop table members;
+```
+
+## 테이블 안에 데이터 CRUD(create, read, update, delete)
+### 생성(insert into문)
+```sql
+insert members(name, age) values('홍길동', 39);
+insert members(name, age) values('김삼순', null);
+insert members(name, age) values('홍명보', 44);
+insert members(name, age) values('박지삼', 22);
+insert members(name, age) values('권명순', 10);
+```
+
+### 읽기(select from문)
+```sql
+select * from members;
+```
+
+### 수정(update문)
+```sql
+update members set age = 33 where pk = 2;
+update members set age = 33 where 1 = 1;
+update members set age = 33;
+```
+* ❕ 중요: 이전 버전의 MySQL에서는 where문 없이 실행 가능 했다. where문이 없을 경우 모든 데이터가 수정 된다.
+
+### 삭제(delete from문)
+```sql
+delete from members where pk = 2;
+delete from members;
+```
+
+### 테이블 안에 데이터 전부 삭제 및 초기화(drop table문)
+```sql
+truncate table members;
+```
+* ❕ 중요: truncate table을 사용할 경우 pk번호까지 초기화 된다.
