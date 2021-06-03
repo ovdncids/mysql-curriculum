@@ -5,3 +5,5 @@
 * [SELECT](SELECT.md)
 
 * [TABLE](TABLE.md)
+
+* [JOIN](JOIN.md)
