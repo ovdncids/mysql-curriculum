@@ -14,7 +14,7 @@ show tables;
 ## 테이블 만들기(create table문)
 ```sql
 create table members (
-  pk int AUTO_INCREMENT PRIMARY KEY,
+  pk int auto_increment primary key,
   name nvarchar(200) not null,
   age int null
 );
@@ -59,3 +59,14 @@ delete from members;
 truncate table members;
 ```
 * ❕ 중요: truncate table을 사용할 경우 pk번호까지 초기화 된다.
+
+### 테이블 복사(as문)
+```sql
+create table members_copy as select * from members;
+```
+* ❕ 중요: 하지만 primary key까지 복사 되지 않는다.
+
+### 다른 테이블의 조회 결과를 현재 테이블에 넣기
+```sql
+insert into members_copy select * from members;
+```
