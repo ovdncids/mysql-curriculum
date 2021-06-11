@@ -14,7 +14,7 @@ show tables;
 ## 테이블 만들기(create table문)
 ```sql
 create table members (
-  pk int auto_increment primary key,
+  member_pk int auto_increment primary key,
   name nvarchar(200) not null,
   age int null
 );
@@ -42,7 +42,7 @@ select * from members;
 
 ### 수정(update문)
 ```sql
-update members set age = 33 where pk = 2;
+update members set age = 33 where member_pk = 2;
 update members set age = 33 where 1 = 1;
 update members set age = 33;
 ```
@@ -50,7 +50,7 @@ update members set age = 33;
 
 ### 삭제(delete from문)
 ```sql
-delete from members where pk = 2;
+delete from members where member_pk = 2;
 delete from members;
 ```
 
@@ -58,7 +58,7 @@ delete from members;
 ```sql
 truncate table members;
 ```
-* ❕ 중요: truncate table을 사용할 경우 pk번호까지 초기화 된다.
+* ❕ 중요: truncate table을 사용할 경우 member_pk번호까지 초기화 된다.
 
 ### 테이블 복사(as문)
 ```sql
