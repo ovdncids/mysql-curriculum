@@ -31,8 +31,8 @@ insert into groceries(member_pk, name, enter, expire)
 values (1, '사과', '2021-01-01', '2021-01-15');
 ```
 
-* ❔ 문제1: `2021-01-01`를 `date_format`함수를 사용하여 insert문 완성하기
-* ❔ 문제2: `2021-01-15`를 `date_format`함수와 `date_add`함수를 사용하여 insert문 완성하기
+* ❔ 문제1: `2021-01-01`를 `date_format`함수를 사용하여 `insert into`문 완성하기
+* ❔ 문제2: `2021-01-15`를 `date_format`함수와 `date_add`함수를 사용하여 `insert into`문 완성하기
 * <details><summary>정답</summary>
 
   ```sql
