@@ -6,7 +6,7 @@
 select now();
 
 # 현재 날짜에 2주 더하기
-select date_add(now(), interval + 2 week);
+select date_add(now(), interval + 1 week);
   # microsecond, second, minute, hour, day, week, month(3월31일 - 1 이면 2월 28일. 윤년이면 29일),
   # quarter(1년의 4분기 1 ~ 4까지 사용가능), year
 
@@ -17,7 +17,7 @@ select date_format(now(), '%Y-%m-%d %H:%i:%S');
 ## groceries 테이블 만들기
 ```sql
 create table groceries (
-  pk int auto_increment primary key,
+  grocery_pk int auto_increment primary key,
   member_pk int not null,
   name nvarchar(200) not null,
   enter date not null,
@@ -39,4 +39,22 @@ values (1, '사과', '2021-01-01', '2021-01-15');
   insert into groceries(member_pk, name, enter, expire)
   values (1, '사과', date_format(now(), '%Y-%m-%d'), date_format(date_add(now(), interval + 2 week), '%Y-%m-%d'));
   ```
+  추가 데이터 넣기
+  ```sql
+  insert into groceries(member_pk, name, enter, expire)
+  values (1, '딸기', date_format(now(), '%Y-%m-%d'), date_format(date_add(now(), interval + 2 week), '%Y-%m-%d'));
+  insert into groceries(member_pk, name, enter, expire)
+  values (2, '바나나', date_format(now(), '%Y-%m-%d'), date_format(date_add(now(), interval + 2 week), '%Y-%m-%d'));
+  insert into groceries(member_pk, name, enter, expire)
+  values (3, '망고', date_format(now(), '%Y-%m-%d'), date_format(date_add(now(), interval + 2 week), '%Y-%m-%d'));
+  insert into groceries(member_pk, name, enter, expire)
+  values (100, '자몽', date_format(now(), '%Y-%m-%d'), date_format(date_add(now(), interval + 2 week), '%Y-%m-%d'));
+  ```
 </details>
+
+### members 테이블과 groceries 테이블 조인 하기(join문)
+```sql
+select * from members m inner join groceries g on m.member_pk = g.member_pk;
+select * from members m left outer join groceries g on m.member_pk = g.member_pk;
+select * from members m right outer join groceries g on m.member_pk = g.member_pk;
+```
