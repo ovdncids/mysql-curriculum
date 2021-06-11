@@ -52,9 +52,38 @@ values (1, '사과', '2021-01-01', '2021-01-15');
   ```
 </details>
 
-### members 테이블과 groceries 테이블 조인 하기(join문)
+## members 테이블과 groceries 테이블 조인 하기(join문)
 ```sql
 select * from members m inner join groceries g on m.member_pk = g.member_pk;
 select * from members m left outer join groceries g on m.member_pk = g.member_pk;
 select * from members m right outer join groceries g on m.member_pk = g.member_pk;
 ```
+
+## items 테이블 만들기
+```sql
+create table items (
+  item_pk int not null,
+  member_pk int not null,
+  name nvarchar(200) not null,
+  enter date not null,
+  expire date not null
+);
+```
+
+### items 테이블에 groceries 테이블 데이터 넣기
+```sql
+insert into items (
+  select grocery_pk as item_pk, member_pk, name, enter, expire from groceries
+);
+```
+
+* ❔ 문제: `groceries` 테이블에 `grocery_pk = 1`인 데이터만 `items` 테이블에 넣기
+* <details><summary>정답</summary>
+
+  ```sql
+  insert into items (
+    select grocery_pk as item_pk, member_pk, name, enter, expire from groceries
+    where grocery_pk = 1
+  );
+  ```
+</details>
