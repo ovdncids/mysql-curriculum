@@ -70,7 +70,7 @@ create table items (
 );
 ```
 
-### items 테이블에 groceries 테이블 데이터 넣기
+### items 테이블에 groceries 테이블의 데이터 복사 하기
 ```sql
 insert into items (
   select grocery_pk as item_pk, member_pk, name, enter, expire from groceries
@@ -87,3 +87,10 @@ insert into items (
   );
   ```
 </details>
+
+### groceries 테이블에서 복사된 데이터가 items 테이블에 있는지 확인
+```sql
+select *, (
+  select item_pk from items i where i.item_pk = g.grocery_pk
+) from groceries g;
+```
