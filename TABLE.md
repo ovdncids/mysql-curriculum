@@ -28,11 +28,11 @@ drop table members;
 ## 테이블 안에 데이터 CRUD(create, read, update, delete)
 ### 생성(insert into문)
 ```sql
-insert members(name, age) values('홍길동', 39);
-insert members(name, age) values('김삼순', null);
-insert members(name, age) values('홍명보', 44);
-insert members(name, age) values('박지삼', 22);
-insert members(name, age) values('권명순', 10);
+insert into members(name, age) values('홍길동', 39);
+insert into members(name, age) values('김삼순', null);
+insert into members(name, age) values('홍명보', 44);
+insert into members(name, age) values('박지삼', 22);
+insert into members(name, age) values('권명순', 10);
 ```
 
 ### 읽기(select from문)
