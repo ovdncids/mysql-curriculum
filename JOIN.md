@@ -94,3 +94,10 @@ select *, (
   select item_pk from items i where i.item_pk = g.grocery_pk
 ) from groceries g;
 ```
+
+### MySQL/MariaDB Table Update Safe 모드
+https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=jevida&logNo=221123654036
+```sql
+SET SQL_SAFE_UPDATES = 0; --해제
+SET SQL_SAFE_UPDATES = 1; --설정
+```
