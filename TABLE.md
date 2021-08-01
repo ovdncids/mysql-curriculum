@@ -62,11 +62,15 @@ truncate table members;
 
 ### 테이블 복사(as문)
 ```sql
-create table members_copy as select * from members;
+create table members_copy as (
+  select * from members
+);
 ```
 * ❕ 중요: 하지만 primary key까지 복사 되지 않는다.
 
 ### 다른 테이블의 조회 결과를 현재 테이블에 넣기
 ```sql
-insert into members_copy select * from members;
+insert into members_copy (
+  select * from members
+);
 ```
