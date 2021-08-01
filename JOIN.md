@@ -77,7 +77,7 @@ insert into items (
 );
 ```
 
-* ❔ 문제: `items` 테이블에 `item_pk = 1`인 데이터만 삭제 하기
+* ❔ 문제: `items` 테이블의 `item_pk = 1`인 데이터만 삭제 하기
 * <details><summary>정답</summary>
 
   ```sql
