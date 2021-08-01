@@ -77,7 +77,15 @@ insert into items (
 );
 ```
 
-* ❔ 문제: `groceries` 테이블에 `grocery_pk = 1`인 데이터만 `items` 테이블에 넣기
+* ❔ 문제: `items` 테이블에 `item_pk = 1`인 데이터만 삭제 하기
+* <details><summary>정답</summary>
+
+  ```sql
+  delete from items where item_pk = 1;
+  ```
+</details>
+
+* ❔ 문제: `groceries` 테이블의 `grocery_pk = 1`인 데이터만 `items` 테이블에 넣기
 * <details><summary>정답</summary>
 
   ```sql
@@ -86,6 +94,7 @@ insert into items (
     where grocery_pk = 1
   );
   ```
+  * ❕ 다시 한번 실행 하기
 </details>
 
 ### groceries 테이블에서 복사된 데이터가 items 테이블에 있는지 확인
@@ -95,9 +104,11 @@ select *, (
 ) from groceries g;
 ```
 
+<!--
 ### MySQL/MariaDB Table Update Safe 모드
 https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=jevida&logNo=221123654036
 ```sql
 SET SQL_SAFE_UPDATES = 0; --해제
 SET SQL_SAFE_UPDATES = 1; --설정
 ```
+-->
