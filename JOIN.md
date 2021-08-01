@@ -62,7 +62,7 @@ select * from members m right outer join groceries g on m.member_pk = g.member_p
 ## items 테이블 만들기
 ```sql
 create table items (
-  item_pk int not null,
+  item_pk int primary key,
   member_pk int not null,
   name nvarchar(200) not null,
   enter date not null,
