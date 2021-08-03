@@ -5,18 +5,23 @@
 npm install mysql
 ```
 
-mysql-connection.js
+mysql-connector.js
 ```js
 const mysql = require('mysql');
 
-const connection = mysql.createPool({
+const db = mysql.createPool({
   host: 'localhost',
   user: 'user',
   password: 'password',
   database: 'test'
 });
 
-const error = function (request, ressponse, error) {
+db.query('select ? as ?', [123, 'abc'], function (error, rows) {
+  console.log(error);
+  console.log(rows);
+});
+
+db.error = function (request, ressponse, error) {
   console.error('Start: SQL error');
   console.error(error.sql);
   console.error('End: SQL error');
@@ -25,22 +30,21 @@ const error = function (request, ressponse, error) {
   return false;
 };
 
-module.exports = {
-  query: connection.query,
-  error: error
-};
-
-connection.query('select 123 as abc', null, function (error, rows) {
-  console.log(error);
-  console.log(rows);
-});
+module.exports = db;
 ```
 
 1. `디버깅 모드`에서 확인
 
 ```diff
-- connection.query('select 123 as abc', null, function (error, rows) {
-+ connection.query('select ? as ?', [123, 'abc'], function (error, rows) {
+- db.query('select 123 as abc', null, function (error, rows) {
++ db.query('select ? as ?', [123, 'abc'], function (error, rows) {
 ```
 
 2. 쿼리문에 `?` 사용
+
+## index.js에서 부르기
+```js
+// MySQL
+global.db = require('./mysql-connector.js');
+```
+
