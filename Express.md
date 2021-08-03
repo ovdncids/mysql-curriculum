@@ -36,9 +36,11 @@ connection.query('select 123 as abc', null, function (error, rows) {
 });
 ```
 
+1. `디버깅 모드`에서 확인
+
 ```diff
 - connection.query('select 123 as abc', null, function (error, rows) {
-+ connection.query('select ? as abc', [123], function (error, rows) {
++ connection.query('select ? as ?', [123, 'abc'], function (error, rows) {
 ```
 
-
+2. 쿼리문에 `?` 사용
