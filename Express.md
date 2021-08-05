@@ -141,3 +141,5 @@ router.delete('/:grocery_pk', function(request, response) {
   });
 });
 ```
+
+## Frontend에 적용
