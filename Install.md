@@ -15,6 +15,21 @@ brew services stop mariadb
 mysql.server start
 ```
 
+### Windows
+https://mariadb.org/download
+```
+# 설치
+Enable access from remote machines for 'root' user <- 체크
+Use UTF8 as default server's character set <- 체크
+
+# DB 실행, 종료
+Window key + q -> 서비스 -> MariaDB
+
+# CMD 창에서 MariaDB 접속
+cd C:\Program Files\MariaDB 10.6\bin
+mysql -u root -p
+```
+
 ## mysql 프로그램 실행
 ```sh
 # DB 접속 프로그램 실행
