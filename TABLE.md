@@ -36,6 +36,9 @@ insert into members(name, age) values('홍명보', 44);
 insert into members(name, age) values('박지삼', 22);
 insert into members(name, age) values('권명순', 10);
 ```
+```sql
+select last_insert_id();
+```
 
 ### 읽기(select from문)
 ```sql
