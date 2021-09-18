@@ -36,6 +36,7 @@ insert into members(name, age) values('홍명보', 44);
 insert into members(name, age) values('박지삼', 22);
 insert into members(name, age) values('권명순', 10);
 ```
+#### 마지막으로 생성된 primary key 얻기
 ```sql
 select last_insert_id();
 ```
