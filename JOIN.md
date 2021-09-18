@@ -101,7 +101,8 @@ insert into items (
 ```sql
 select *, (
   select item_pk from items i where i.item_pk = g.grocery_pk
-) from groceries g;
+) as item_pk
+from groceries g;
 ```
 
 <!--
