@@ -16,7 +16,7 @@ const db = mysql.createPool({
   database: 'test'
 });
 
-db.query('select ? as ?', [123, 'abc'], function (error, rows) {
+db.query('select 123 as abc', null, function (error, rows) {
   console.log(error);
   console.log(rows);
 });
@@ -79,6 +79,8 @@ router.post('/', function(request, response) {
     }
   });
 });
+
+module.exports = router;
 ```
 * `Swagger`에 `Create` 생성 하기
 
@@ -107,13 +109,13 @@ router.get('/', function(request, response) {
 
 ### Update
 ```js
-router.patch('/', function(request, response) {
+router.patch('/:grocery_pk', function(request, response) {
   const sql = `
     update groceries
     set expire = ?
     where grocery_pk = ? and member_pk = 1;
   `;
-  db.query(sql, [request.body.grocery.expire, request.body.grocery_pk], function (error, rows) {
+  db.query(sql, [request.body.expire, request.params.grocery_pk], function (error, rows) {
     if (!error || db.error(request, response, error)) {
       console.log('Done groceries patch', rows);
       response.status(200).send({
