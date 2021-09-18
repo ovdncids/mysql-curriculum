@@ -99,9 +99,10 @@ insert into items (
 
 ### groceries 테이블에서 복사된 데이터가 items 테이블에 있는지 확인
 ```sql
-select *, (
-  select item_pk from items i where i.item_pk = g.grocery_pk
-) as item_pk
+select
+  *, (
+    select item_pk from items i where i.item_pk = g.grocery_pk
+  ) as item_pk
 from groceries g;
 ```
 
