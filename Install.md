@@ -47,8 +47,9 @@ select user();
 ```
 
 ### Mac용 mysql 접속 프로그램
-* https://sequelpro.com/download
 * https://dev.mysql.com/downloads/workbench
+* https://dbeaver.io/download (Eclipse 형식)
+* https://sequelpro.com/download
 ```mysql
 Server name: localhost
 Login: user@localhost
