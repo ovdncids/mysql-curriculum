@@ -3,7 +3,19 @@
 
 # MS-SQL with JSON
 ```sql
-WITH AA AS (SELECT *
-    FROM OpenJson('[{"town":"Belgrade"},{"town":"Paris"},{"town":"Madrid"}]') WITH (TOWN varchar(20) '$.town')
-) SELECT * FROM AA;
+SELECT *
+FROM
+OpenJson('
+[
+  {"name":"홍길동", "age": 39},
+  {"name":"김삼순", "age": 33},
+  {"name":"홍명보", "age": 44},
+  {"name":"박지삼", "age": 22},
+  {"name":"권명순", "age": 10}
+]
+')
+WITH (
+  name nvarchar(200) '$.name',
+  age int '$.age'
+)
 ```
