@@ -33,5 +33,5 @@ OpenJson('
 WITH (
   name nvarchar(200) '$.name',
   age int '$.age'
-)
+);
 ```
