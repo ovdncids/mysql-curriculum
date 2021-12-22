@@ -22,3 +22,12 @@ from (
 ) members;
 ```
 * `PARTITION BY`: `GROUP BY`라고 생각하면 쉽다.
+
+## 마지막 PK 번호 넣기
+```sql
+INSERT INTO members(member_pk, name, age) VALUES(
+  (SELECT ISNULL(MAX(member_pk) + 1, 1) FROM members) 
+  '김유신',
+  63
+);
+```
