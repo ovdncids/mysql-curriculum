@@ -24,9 +24,19 @@ from (
 * `PARTITION BY`: `GROUP BY`라고 생각하면 쉽다.
 
 ## 마지막 PK 번호 넣기
+* 일반 적인 경우
 ```sql
 INSERT INTO members(member_pk, name, age) VALUES(
-  (SELECT ISNULL(MAX(member_pk) + 1, 1) FROM members) 
+  (SELECT ISNULL(MAX(member_pk) + 1, 1) FROM members),
+  '김유신',
+  63
+);
+```
+
+* bigint인 경우
+```sql
+INSERT INTO members(member_pk, name, age) VALUES(
+  ISNULL((SELECT TOP 1 member_pk FROM members ORDER BY LEN(member_pk) DESC, member_pk DESC) + 1, 1),
   '김유신',
   63
 );
