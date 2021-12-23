@@ -4,6 +4,9 @@
 ### Mac
 * https://mariadb.com/kb/ko/installing-mariadb-on-macos-using-homebrew
 ```sh
+# 설치전에 telnet으로 mysql 깔려 있는지 확인
+telnet localhost 3306
+
 # 설치
 brew install mariadb
 
