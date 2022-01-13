@@ -3,22 +3,22 @@
 * `LAG`: 이전 행의 데이터를 조회
 * `LEAD`: 다음 행의 데이터를 조회
 ```sql
-select
+SELECT
   members.*
   , LAG(name, 1) OVER (ORDER BY name)
   , LEAD(name, 1, '') OVER (ORDER BY name)
   --, LAG(name, 1) OVER (PARTITION BY name ORDER BY name)
   --, LEAD(name, 1) OVER (PARTITION BY name ORDER BY name)
-from (
-  select '홍길동' as name, 39 as age
-  union all
-  select '김삼순', 33
-  union all
-  select '홍명보', 44
-  union all
-  select '박지삼', 22
-  union all
-  select '권명순', 10
+FROM (
+  SELECT '홍길동' AS name, 39 AS age
+  UNION ALL
+  SELECT '김삼순', 33
+  UNION ALL
+  SELECT '홍명보', 44
+  UNION ALL
+  SELECT '박지삼', 22
+  UNION ALL
+  SELECT '권명순', 10
 ) members;
 ```
 * `PARTITION BY`: `GROUP BY`라고 생각하면 쉽다.
@@ -40,4 +40,25 @@ INSERT INTO members(member_pk, name, age) VALUES(
   '김유신',
   63
 );
+```
+
+## FOR JSON AUTO
+```sql
+SELECT
+  members.*
+FROM (
+  SELECT '홍길동' AS name, 39 AS age
+  UNION ALL
+  SELECT '김삼순', 33
+  UNION ALL
+  SELECT '홍명보', 44
+  UNION ALL
+  SELECT '박지삼', 22
+  UNION ALL
+  SELECT '권명순', 10
+) members
+FOR JSON AUTO;
+```
+```json
+[{"name":"홍길동","age":39},{"name":"김삼순","age":33},{"name":"홍명보","age":44},{"name":"박지삼","age":22},{"name":"권명순","age":10}]
 ```
