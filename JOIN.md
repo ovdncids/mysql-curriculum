@@ -14,10 +14,10 @@ select date_add(now(), interval + 1 week);
 select date_format(now(), '%Y-%m-%d %H:%i:%S');
 ```
 
-## groceries 테이블 만들기
+## items 테이블 만들기
 ```sql
-create table groceries (
-  grocery_pk int auto_increment primary key,
+create table items (
+  item_pk int auto_increment primary key,
   member_pk int not null,
   name nvarchar(200) not null,
   enter date not null,
@@ -25,9 +25,9 @@ create table groceries (
 );
 ```
 
-### groceries 테이블에 데이터 넣기
+### items 테이블에 데이터 넣기
 ```sql
-insert into groceries(member_pk, name, enter, expire)
+insert into items(member_pk, name, enter, expire)
 values (1, '사과', '2021-01-01', '2021-01-15');
 ```
 
@@ -36,33 +36,33 @@ values (1, '사과', '2021-01-01', '2021-01-15');
 * <details><summary>정답</summary>
 
   ```sql
-  insert into groceries(member_pk, name, enter, expire)
+  insert into items(member_pk, name, enter, expire)
   values (1, '사과', date_format(now(), '%Y-%m-%d'), date_format(date_add(now(), interval + 2 week), '%Y-%m-%d'));
   ```
   추가 데이터 넣기
   ```sql
-  insert into groceries(member_pk, name, enter, expire)
+  insert into items(member_pk, name, enter, expire)
   values (1, '딸기', date_format(now(), '%Y-%m-%d'), date_format(date_add(now(), interval + 2 week), '%Y-%m-%d'));
-  insert into groceries(member_pk, name, enter, expire)
+  insert into items(member_pk, name, enter, expire)
   values (2, '바나나', date_format(now(), '%Y-%m-%d'), date_format(date_add(now(), interval + 2 week), '%Y-%m-%d'));
-  insert into groceries(member_pk, name, enter, expire)
+  insert into items(member_pk, name, enter, expire)
   values (3, '망고', date_format(now(), '%Y-%m-%d'), date_format(date_add(now(), interval + 2 week), '%Y-%m-%d'));
-  insert into groceries(member_pk, name, enter, expire)
+  insert into items(member_pk, name, enter, expire)
   values (100, '자몽', date_format(now(), '%Y-%m-%d'), date_format(date_add(now(), interval + 2 week), '%Y-%m-%d'));
   ```
 </details>
 
-## members 테이블과 groceries 테이블 조인 하기(join문)
+## members 테이블과 items 테이블 조인 하기(join문)
 ```sql
-select * from members m inner join groceries g on m.member_pk = g.member_pk;
-select * from members m left outer join groceries g on m.member_pk = g.member_pk;
-select * from members m right outer join groceries g on m.member_pk = g.member_pk;
+select * from members m inner join items i on m.member_pk = i.member_pk;
+select * from members m left outer join items i on m.member_pk = i.member_pk;
+select * from members m right outer join items i on m.member_pk = i.member_pk;
 ```
 
-## items 테이블 만들기
+## groceries 테이블 만들기
 ```sql
-create table items (
-  item_pk int primary key,
+create table groceries (
+  grocery_pk int primary key,
   member_pk int not null,
   name nvarchar(200) not null,
   enter date not null,
@@ -70,40 +70,40 @@ create table items (
 );
 ```
 
-### items 테이블에 groceries 테이블의 데이터 복사 하기
+### groceries 테이블에 items 테이블의 데이터 복사 하기
 ```sql
-insert into items (
-  select grocery_pk as item_pk, member_pk, name, enter, expire from groceries
+insert into groceries (
+  select item_pk as grocery_pk, member_pk, name, enter, expire from items
 );
 ```
 
-* ❔ 문제: `items` 테이블의 `item_pk = 1`인 데이터만 삭제 하기
+* ❔ 문제: `groceries` 테이블의 `grocery_pk = 1`인 데이터만 삭제 하기
 * <details><summary>정답</summary>
 
   ```sql
-  delete from items where item_pk = 1;
+  delete from groceries where grocery_pk = 1;
   ```
 </details>
 
-* ❔ 문제: `groceries` 테이블의 `grocery_pk = 1`인 데이터만 `items` 테이블에 넣기
+* ❔ 문제: `items` 테이블의 `item_pk = 1`인 데이터만 `groceries` 테이블에 넣기
 * <details><summary>정답</summary>
 
   ```sql
-  insert into items (
-    select grocery_pk as item_pk, member_pk, name, enter, expire from groceries
-    where grocery_pk = 1
+  insert into groceries (
+    select item_pk as grocery_pk, member_pk, name, enter, expire from items
+    where item_pk = 1
   );
   ```
   * ❕ 다시 한번 실행 하기
 </details>
 
-### groceries 테이블에서 복사된 데이터가 items 테이블에 있는지 확인
+### items 테이블에서 복사된 데이터가 groceries 테이블에 있는지 확인
 ```sql
 select
   *, (
-    select item_pk from items i where i.item_pk = g.grocery_pk
+    select grocery_pk from groceries g where g.grocery_pk = i.item_pk
   ) as item_pk
-from groceries g;
+from items i;
 ```
 
 <!--
