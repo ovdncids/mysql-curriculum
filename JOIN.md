@@ -102,7 +102,7 @@ insert into groceries (
 select
   *, (
     select grocery_pk from groceries g where g.grocery_pk = i.item_pk
-  ) as item_pk
+  ) as grocery_pk
 from items i;
 ```
 
