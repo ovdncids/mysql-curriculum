@@ -1,4 +1,5 @@
 # Express with MySQL
+* [Download](https://github.com/ovdncids/vue-curriculum/raw/master/download/express-server.zip)
 
 ## mysql 라이브러리 설치
 ```sh
@@ -33,7 +34,7 @@ db.error = function (request, ressponse, error) {
 module.exports = db;
 ```
 
-1. `디버깅 모드`에서 확인
+1. `mysql-connector.js` 파일을 `디버깅 모드`에서 확인
 
 ```diff
 - db.query('select 123 as abc', null, function (error, rows) {
@@ -49,11 +50,11 @@ index.js
 global.db = require('./mysql-connector.js');
 ```
 ```js
-app.use('/api/v1/groceries', require('./routes/groceries.js'));
+app.use('/api/v1/items', require('./routes/items.js'));
 ```
 
-## groceries 라우터 생성
-routes/groceries.js
+## items 라우터 생성
+routes/items.js
 
 ### Create
 ```js
@@ -62,7 +63,7 @@ const db  = global.db;
 
 router.post('/', function(request, response) {
   const sql = `
-    insert into groceries(member_pk, name, enter, expire)
+    insert into items(member_pk, name, enter, expire)
     values (
       1,
       ?,
@@ -72,7 +73,7 @@ router.post('/', function(request, response) {
   `;
   db.query(sql, [request.body.name], function (error, rows) {
     if (!error || db.error(request, response, error)) {
-      console.log('Done groceries post', rows);
+      console.log('Done items post', rows);
       response.status(200).send({
         result: 'Created'
       });
@@ -90,16 +91,16 @@ router.get('/', function(request, response) {
   const orderName = request.query.orderName || 'name';
   const orderType = request.query.orderType || 'asc';
   const sql = `
-    select * from groceries
+    select * from items
     where member_pk = 1
     order by ? ?;
   `;
   db.query(sql, [orderName, orderType], function (error, rows) {
     if (!error || db.error(request, response, error)) {
-      console.log('Done groceries get', rows);
+      console.log('Done items get', rows);
       response.status(200).send({
         result: 'Readed',
-        groceries: rows
+        items: rows
       });
     }
   });
@@ -109,15 +110,15 @@ router.get('/', function(request, response) {
 
 ### Update
 ```js
-router.patch('/:grocery_pk', function(request, response) {
+router.patch('/:items_pk', function(request, response) {
   const sql = `
-    update groceries
+    update items
     set expire = ?
-    where grocery_pk = ? and member_pk = 1;
+    where items_pk = ? and member_pk = 1;
   `;
-  db.query(sql, [request.body.expire, request.params.grocery_pk], function (error, rows) {
+  db.query(sql, [request.body.expire, request.params.items_pk], function (error, rows) {
     if (!error || db.error(request, response, error)) {
-      console.log('Done groceries patch', rows);
+      console.log('Done items patch', rows);
       response.status(200).send({
         result: 'Updated'
       });
@@ -128,14 +129,14 @@ router.patch('/:grocery_pk', function(request, response) {
 
 ### Delete
 ```js
-router.delete('/:grocery_pk', function(request, response) {
+router.delete('/:items_pk', function(request, response) {
   const sql = `
-    delete from groceries
-    where grocery_pk = ? and member_pk = 1;
+    delete from items
+    where items_pk = ? and member_pk = 1;
   `;
-  db.query(sql, [request.params.grocery_pk], function (error, rows) {
+  db.query(sql, [request.params.items_pk], function (error, rows) {
     if (!error || db.error(request, response, error)) {
-      console.log('Done groceries delete', rows);
+      console.log('Done items delete', rows);
       response.status(200).send({
         result: 'Deleted'
       });
