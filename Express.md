@@ -108,6 +108,24 @@ router.get('/', function(request, response) {
 ```
 * ❕ 정렬이 안된는 이유 설명
 
+### Delete
+```js
+router.delete('/:items_pk', function(request, response) {
+  const sql = `
+    delete from items
+    where items_pk = ? and member_pk = 1;
+  `;
+  db.query(sql, [request.params.items_pk], function (error, rows) {
+    if (!error || db.error(request, response, error)) {
+      console.log('Done items delete', rows);
+      response.status(200).send({
+        result: 'Deleted'
+      });
+    }
+  });
+});
+```
+
 ### Update
 ```js
 router.patch('/:items_pk', function(request, response) {
@@ -121,24 +139,6 @@ router.patch('/:items_pk', function(request, response) {
       console.log('Done items patch', rows);
       response.status(200).send({
         result: 'Updated'
-      });
-    }
-  });
-});
-```
-
-### Delete
-```js
-router.delete('/:items_pk', function(request, response) {
-  const sql = `
-    delete from items
-    where items_pk = ? and member_pk = 1;
-  `;
-  db.query(sql, [request.params.items_pk], function (error, rows) {
-    if (!error || db.error(request, response, error)) {
-      console.log('Done items delete', rows);
-      response.status(200).send({
-        result: 'Deleted'
       });
     }
   });
