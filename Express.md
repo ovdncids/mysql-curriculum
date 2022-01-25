@@ -145,9 +145,8 @@ router.patch('/:items_pk', function(request, response) {
 });
 ```
 
-## Frontend에 적용
+* Frontend에 적용
 
-<!--
 ## ER_NOT_SUPPORTED_AUTH_MODE
 * https://1mini2.tistory.com/88
 ```sql
@@ -158,4 +157,3 @@ FLUSH PRIVILEGES;
 SELECT Host,User,plugin,authentication_string FROM mysql.user;
 -- caching_sha2_password -> mysql_native_password 변경 되었는지 확인
 ```
--->
