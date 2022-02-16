@@ -62,3 +62,9 @@ FOR JSON AUTO;
 ```json
 [{"name":"홍길동","age":39},{"name":"김삼순","age":33},{"name":"홍명보","age":44},{"name":"박지삼","age":22},{"name":"권명순","age":10}]
 ```
+
+## Date
+```sql
+SELECT FORMAT(CURRENT_TIMESTAMP, 'yyyy-MM-dd HH:mm:ss.fff');
+SELECT CONVERT(DATETIME, '2022-01-02 11:22:33.777', 121);
+```
