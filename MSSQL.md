@@ -1,4 +1,11 @@
 # MS-SQL
+
+## Microsoft SQL Server Management Studio
+### 포트 설정
+```sh
+127.0.0.1,1433
+```
+
 ## LAG, LEAD
 * `LAG`: 이전 행의 데이터를 조회
 * `LEAD`: 다음 행의 데이터를 조회
