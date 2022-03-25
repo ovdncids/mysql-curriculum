@@ -42,6 +42,30 @@ module.exports = db;
 ```
 
 2. 쿼리문에 `?` 사용
+* <details><summary>환경설정</summary>
+
+  ```js
+  const connections = {
+    product: {
+      host: 'localhost',
+      user: 'user',
+      password: 'password',
+      database: 'test'
+    },
+    dev: {
+      host: 'localhost',
+      user: 'user',
+      password: 'password',
+      database: 'test'
+    }
+  };
+  process.env.NODE_ENV = 'product';
+  if (process.env.USER === 'ec2-user') {
+    process.env.NODE_ENV = 'dev';
+  }
+  const db = mysql.createPool(connections[process.env.NODE_ENV]);
+  ```
+</details>
 
 ## index.js에서 부르기
 index.js
