@@ -12,4 +12,5 @@ status : failure -test failed: ora-00604: error occurred at recursive sql level 
   지역: 미국
 
 Oracle SQL Developer > 재실행 후 재접속
+SQL Developer > Oracle 접속 후 > 언어 및 지역 복구
 ```
