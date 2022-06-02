@@ -81,7 +81,7 @@ insert into members_copy (
 );
 ```
 
-## 없을 경우 생성문, 있을 경우 수정문
+## 데이터가 없을 경우 생성문, 있을 경우 수정문
 ```sql
 insert into members(member_pk, name, age) values (1, '홍길동', 39)
 on duplicate key update
