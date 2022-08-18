@@ -53,6 +53,7 @@ update members set age = 33 where 1 = 1;
 update members set age = 33;
 ```
 * ❕ 중요: 이전 버전의 MySQL에서는 where문 없이 실행 가능 했다. where문이 없을 경우 모든 데이터가 수정 된다.
+* ❔ `name`과 `age` 둘다 수정 하려면
 
 ### 삭제(delete from문)
 ```sql
