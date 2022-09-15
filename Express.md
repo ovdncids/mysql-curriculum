@@ -83,7 +83,7 @@ routes/items.js
 ### Create
 ```js
 const router = global.express.Router();
-const db  = global.db;
+const db = global.db;
 
 router.post('/', function(request, response) {
   const sql = `
