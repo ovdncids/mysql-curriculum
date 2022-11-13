@@ -85,7 +85,7 @@ routes/items.js
 const router = global.express.Router();
 const db = global.db;
 
-router.post('/', function(request, response) {
+router.post('/', function(req, res) {
   const sql = `
     insert into items(member_pk, name, enter, expire)
     values (
@@ -95,10 +95,10 @@ router.post('/', function(request, response) {
       date_format(date_add(now(), interval + 2 week), '%Y-%m-%d')
     );
   `;
-  db.query(sql, [request.body.name], function (error, rows) {
-    if (!error || db.error(request, response, error)) {
+  db.query(sql, [req.body.name], function (error, rows) {
+    if (!error || db.error(req, res, error)) {
       console.log('Done items post', rows);
-      response.status(200).send({
+      res.status(200).send({
         result: 'Created'
       });
     }
@@ -111,18 +111,18 @@ module.exports = router;
 
 ### Read
 ```js
-router.get('/', function(request, response) {
-  const orderName = request.query.orderName || 'name';
-  const orderType = request.query.orderType || 'asc';
+router.get('/', function(req, res) {
+  const orderName = req.query.orderName || 'name';
+  const orderType = req.query.orderType || 'asc';
   const sql = `
     select * from items
     where member_pk = 1
     order by ? ?;
   `;
   db.query(sql, [orderName, orderType], function (error, rows) {
-    if (!error || db.error(request, response, error)) {
+    if (!error || db.error(req, res, error)) {
       console.log('Done items get', rows);
-      response.status(200).send({
+      res.status(200).send({
         result: 'Readed',
         items: rows
       });
@@ -134,15 +134,15 @@ router.get('/', function(request, response) {
 
 ### Delete
 ```js
-router.delete('/:items_pk', function(request, response) {
+router.delete('/:items_pk', function(req, res) {
   const sql = `
     delete from items
     where items_pk = ? and member_pk = 1;
   `;
-  db.query(sql, [request.params.items_pk], function (error, rows) {
-    if (!error || db.error(request, response, error)) {
+  db.query(sql, [req.params.items_pk], function (error, rows) {
+    if (!error || db.error(req, res, error)) {
       console.log('Done items delete', rows);
-      response.status(200).send({
+      res.status(200).send({
         result: 'Deleted'
       });
     }
@@ -152,16 +152,16 @@ router.delete('/:items_pk', function(request, response) {
 
 ### Update
 ```js
-router.patch('/:items_pk', function(request, response) {
+router.patch('/:items_pk', function(req, res) {
   const sql = `
     update items
     set expire = ?
     where items_pk = ? and member_pk = 1;
   `;
-  db.query(sql, [request.body.expire, request.params.items_pk], function (error, rows) {
-    if (!error || db.error(request, response, error)) {
+  db.query(sql, [req.body.expire, req.params.items_pk], function (error, rows) {
+    if (!error || db.error(req, res, error)) {
       console.log('Done items patch', rows);
-      response.status(200).send({
+      res.status(200).send({
         result: 'Updated'
       });
     }
