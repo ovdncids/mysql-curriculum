@@ -18,7 +18,7 @@ const db = mysql.createPool({
 });
 
 db.query('select 123 as abc', null, function (error, rows) {
-  console.log(error);
+  console.error(error);
   console.log(rows);
 });
 
