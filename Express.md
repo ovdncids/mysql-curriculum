@@ -96,12 +96,11 @@ router.post('/', function(req, res) {
     );
   `;
   db.query(sql, [req.body.name], function (error, rows) {
-    if (!error || db.error(req, res, error)) {
-      console.log('Done items post', rows);
-      res.status(200).send({
-        result: 'Created'
-      });
-    }
+    if (error) return dbError(req, res, error);
+    console.log('Done items post', rows);
+    res.status(200).send({
+      result: 'Created'
+    });
   });
 });
 
@@ -120,13 +119,12 @@ router.get('/', function(req, res) {
     order by ? ?;
   `;
   db.query(sql, [orderName, orderType], function (error, rows) {
-    if (!error || db.error(req, res, error)) {
-      console.log('Done items get', rows);
-      res.status(200).send({
-        result: 'Readed',
-        items: rows
-      });
-    }
+    if (error) return dbError(req, res, error);
+    console.log('Done items get', rows);
+    res.status(200).send({
+      result: 'Readed',
+      items: rows
+    });
   });
 });
 ```
@@ -140,12 +138,11 @@ router.delete('/:items_pk', function(req, res) {
     where items_pk = ? and member_pk = 1;
   `;
   db.query(sql, [req.params.items_pk], function (error, rows) {
-    if (!error || db.error(req, res, error)) {
-      console.log('Done items delete', rows);
-      res.status(200).send({
-        result: 'Deleted'
-      });
-    }
+    if (error) return dbError(req, res, error);
+    console.log('Done items delete', rows);
+    res.status(200).send({
+      result: 'Deleted'
+    });
   });
 });
 ```
@@ -159,12 +156,11 @@ router.patch('/:items_pk', function(req, res) {
     where items_pk = ? and member_pk = 1;
   `;
   db.query(sql, [req.body.expire, req.params.items_pk], function (error, rows) {
-    if (!error || db.error(req, res, error)) {
-      console.log('Done items patch', rows);
-      res.status(200).send({
-        result: 'Updated'
-      });
-    }
+    if (error) return dbError(req, res, error);
+    console.log('Done items patch', rows);
+    res.status(200).send({
+      result: 'Updated'
+    });
   });
 });
 ```
