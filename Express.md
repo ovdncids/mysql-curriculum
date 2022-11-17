@@ -173,7 +173,7 @@ router.get('/', function(req, res) {
   const q = req.query.q || '';
   const sql = `
     select * from members
-    where ? = '' || name like ?
+    where ? = '' or name like ?
   `;
   db.query(sql, [q, `%${q}%`], function (error, rows) {
     if (error) return dbError(req, res, error);
