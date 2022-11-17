@@ -167,6 +167,25 @@ router.patch('/:items_pk', function(req, res) {
 
 * Frontend에 적용
 
+### like문
+```js
+router.get('/', function(req, res) {
+  const q = req.query.q || '';
+  const sql = `
+    select * from members
+    where ? = '' || name like ?
+  `;
+  db.query(sql, [q, `%${q}%`], function (error, rows) {
+    if (error) return dbError(req, res, error);
+    console.log('Done members search', rows);
+    res.status(200).send({
+      result: 'Searched',
+      items: rows
+    });
+  });
+});
+```
+
 ## ER_NOT_SUPPORTED_AUTH_MODE
 * https://1mini2.tistory.com/88
 ```sql
