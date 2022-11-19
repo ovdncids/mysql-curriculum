@@ -173,9 +173,9 @@ router.get('/', function(req, res) {
   const q = req.query.q || '';
   const sql = `
     select * from members
-    where ? = '' or name like ?
+    where ? = '' or name like concat('%', ?, '%')
   `;
-  db.query(sql, [q, `%${q}%`], function (error, rows) {
+  db.query(sql, [q, q], function (error, rows) {
     if (error) return dbError(req, res, error);
     console.log('Done members search', rows);
     res.status(200).send({
@@ -185,6 +185,7 @@ router.get('/', function(req, res) {
   });
 });
 ```
+* https://dongram.tistory.com/12
 
 ## ER_NOT_SUPPORTED_AUTH_MODE
 * https://1mini2.tistory.com/88
