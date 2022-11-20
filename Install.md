@@ -57,3 +57,19 @@ select user();
 Server name: localhost
 Login: user@localhost
 ```
+
+## AWS 연결
+```sh
+chmod 400 인증서.pem
+```
+* 인증서 권한을 변경 한다.
+
+```sh
+ssh -i "인증서.pem" -f 사용자@AWS인증서버주소 -L 3307:AWS디비서버주소:3306 -N
+```
+* `localhost`의 `3307` 포트에 `AWS디비서버`의 `3306` 포트를 포트 포워딩 한다.
+* 재부팅 하면 `3307` 포트 포트 포워딩이 풀린다.
+
+```sh
+mysql -h localhost -u 사용자 -p -P 3307
+```
