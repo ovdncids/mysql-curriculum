@@ -33,7 +33,7 @@ cd C:\Program Files\MariaDB 10.6\bin
 mysql -u root -p
 ```
 
-## mysql 프로그램 실행
+## MySQL 접속 프로그램 실행
 ```sh
 # DB 접속 프로그램 실행
 mysql
@@ -49,7 +49,7 @@ select user();
 \s
 ```
 
-### Mac용 mysql 접속 프로그램
+### Mac용 MySQL 접속 프로그램
 * https://dev.mysql.com/downloads/workbench
 * https://dbeaver.io/download (Eclipse 형식)
 * https://sequelpro.com/download
