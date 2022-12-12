@@ -21,7 +21,7 @@ select 1 as 제목1, '2' as 제목2, '삼' as 제목3
 union
 select 'four', '오', 6;
 ```
-* Export 해보기
+* 쿼리 실행 후 `Export` 해보기
 
 * ❕ 중요: 동일한 행을 2번 쓴다면
   ```sql
