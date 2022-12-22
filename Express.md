@@ -17,12 +17,12 @@ const db = mysql.createPool({
   database: 'test'
 });
 
-db.query('select 123 as abc', null, function (error, rows) {
+db.query('select 123 as abc', null, function(error, rows) {
   console.error(error);
   console.log(rows);
 });
 
-db.error = function (req, res, error) {
+db.error = function(req, res, error) {
   console.error('Start: SQL error');
   console.error(error.sql);
   console.error('End: SQL error');
@@ -37,8 +37,8 @@ module.exports = db;
 1. `mysql-connector.js` 파일을 `디버깅 모드`에서 확인
 
 ```diff
-- db.query('select 123 as abc', null, function (error, rows) {
-+ db.query('select ? as ?', [123, 'abc'], function (error, rows) {
+- db.query('select 123 as abc', null, function(error, rows) {
++ db.query('select ? as ?', [123, 'abc'], function(error, rows) {
 ```
 
 2. 쿼리문에 `?` 사용
@@ -95,8 +95,8 @@ router.post('/', function(req, res) {
       date_format(date_add(now(), interval + 2 week), '%Y-%m-%d')
     );
   `;
-  db.query(sql, [req.body.name], function (error, rows) {
-    if (error) return dbError(req, res, error);
+  db.query(sql, [req.body.name], function(error, rows) {
+    if (error) return db.error(req, res, error);
     console.log('Done items post', rows);
     res.status(200).send({
       result: 'Created'
@@ -118,8 +118,8 @@ router.get('/', function(req, res) {
     where member_pk = 1
     order by ? ?;
   `;
-  db.query(sql, [orderName, orderType], function (error, rows) {
-    if (error) return dbError(req, res, error);
+  db.query(sql, [orderName, orderType], function(error, rows) {
+    if (error) return db.error(req, res, error);
     console.log('Done items get', rows);
     res.status(200).send({
       result: 'Readed',
@@ -137,8 +137,8 @@ router.delete('/:items_pk', function(req, res) {
     delete from items
     where items_pk = ? and member_pk = 1;
   `;
-  db.query(sql, [req.params.items_pk], function (error, rows) {
-    if (error) return dbError(req, res, error);
+  db.query(sql, [req.params.items_pk], function(error, rows) {
+    if (error) return db.error(req, res, error);
     console.log('Done items delete', rows);
     res.status(200).send({
       result: 'Deleted'
@@ -155,8 +155,8 @@ router.patch('/:items_pk', function(req, res) {
     set expire = ?
     where items_pk = ? and member_pk = 1;
   `;
-  db.query(sql, [req.body.expire, req.params.items_pk], function (error, rows) {
-    if (error) return dbError(req, res, error);
+  db.query(sql, [req.body.expire, req.params.items_pk], function(error, rows) {
+    if (error) return db.error(req, res, error);
     console.log('Done items patch', rows);
     res.status(200).send({
       result: 'Updated'
@@ -175,8 +175,8 @@ router.get('/', function(req, res) {
     select * from members
     where ? = '' or name like concat('%', ?, '%')
   `;
-  db.query(sql, [q, q], function (error, rows) {
-    if (error) return dbError(req, res, error);
+  db.query(sql, [q, q], function(error, rows) {
+    if (error) return db.error(req, res, error);
     console.log('Done members search', rows);
     res.status(200).send({
       result: 'Searched',
