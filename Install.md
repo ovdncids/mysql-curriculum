@@ -40,6 +40,11 @@ mysql
   # 현재 사용자 계정의로 접속
 sudo mysql -u root
   # 관리자 계정으로 접속
+
+# root 비밀번호 변경
+use mysql;
+set password for 'root'@'localhost' = PASSWORD('password');
+flush privileges;
 ```
 
 ### 현재 접속한 사용자 보기
