@@ -19,10 +19,10 @@ select date_format(now(), '%Y-%m-%d %H:%i:%S');
 create table items (
   item_pk int auto_increment primary key,
   member_pk int not null,
-  name nvarchar(200) not null,
+  name varchar(200) not null,
   enter date not null,
   expire date not null
-);
+) charset = utf8;
 ```
 
 ### items 테이블에 데이터 넣기
@@ -64,10 +64,10 @@ select * from members m right outer join items i on m.member_pk = i.member_pk;
 create table groceries (
   grocery_pk int primary key,
   member_pk int not null,
-  name nvarchar(200) not null,
+  name varchar(200) not null,
   enter date not null,
   expire date not null
-);
+) charset = utf8;
 ```
 
 ### groceries 테이블에 items 테이블의 데이터 복사 하기
