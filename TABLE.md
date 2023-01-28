@@ -17,9 +17,9 @@ show tables;
 ```sql
 create table members (
   member_pk int auto_increment primary key,
-  name nvarchar(200) not null,
+  name varchar(200) not null,
   age int null
-);
+) charset = utf8;
 ```
 
 ### 테이블 삭제(drop table문)
