@@ -18,7 +18,7 @@ select date_format(now(), '%Y-%m-%d %H:%i:%S');
 ```sql
 create table items (
   item_pk int auto_increment primary key,
-  member_pk int not null,
+  user_pk int not null,
   name varchar(200) not null,
   enter date not null,
   expire date not null
@@ -27,7 +27,7 @@ create table items (
 
 ### items 테이블에 데이터 넣기
 ```sql
-insert into items(member_pk, name, enter, expire)
+insert into items(user_pk, name, enter, expire)
 values (1, '사과', '2022-01-01', '2022-01-15');
 ```
 
@@ -36,34 +36,34 @@ values (1, '사과', '2022-01-01', '2022-01-15');
 * <details><summary>정답</summary>
 
   ```sql
-  insert into items(member_pk, name, enter, expire)
+  insert into items(user_pk, name, enter, expire)
   values (1, '사과', date_format(now(), '%Y-%m-%d'), date_format(date_add(now(), interval + 2 week), '%Y-%m-%d'));
   ```
   추가 데이터 넣기
   ```sql
-  insert into items(member_pk, name, enter, expire)
+  insert into items(user_pk, name, enter, expire)
   values (1, '딸기', date_format(now(), '%Y-%m-%d'), date_format(date_add(now(), interval + 2 week), '%Y-%m-%d'));
-  insert into items(member_pk, name, enter, expire)
+  insert into items(user_pk, name, enter, expire)
   values (2, '바나나', date_format(now(), '%Y-%m-%d'), date_format(date_add(now(), interval + 2 week), '%Y-%m-%d'));
-  insert into items(member_pk, name, enter, expire)
+  insert into items(user_pk, name, enter, expire)
   values (3, '망고', date_format(now(), '%Y-%m-%d'), date_format(date_add(now(), interval + 2 week), '%Y-%m-%d'));
-  insert into items(member_pk, name, enter, expire)
+  insert into items(user_pk, name, enter, expire)
   values (100, '자몽', date_format(now(), '%Y-%m-%d'), date_format(date_add(now(), interval + 2 week), '%Y-%m-%d'));
   ```
 </details>
 
-## members 테이블과 items 테이블 조인 하기(join문)
+## users 테이블과 items 테이블 조인 하기(join문)
 ```sql
-select * from members m inner join items i on m.member_pk = i.member_pk;
-select * from members m left outer join items i on m.member_pk = i.member_pk;
-select * from members m right outer join items i on m.member_pk = i.member_pk;
+select * from users m inner join items i on m.user_pk = i.user_pk;
+select * from users m left outer join items i on m.user_pk = i.user_pk;
+select * from users m right outer join items i on m.user_pk = i.user_pk;
 ```
 
 ## groceries 테이블 만들기
 ```sql
 create table groceries (
   grocery_pk int primary key,
-  member_pk int not null,
+  user_pk int not null,
   name varchar(200) not null,
   enter date not null,
   expire date not null
@@ -73,7 +73,7 @@ create table groceries (
 ### groceries 테이블에 items 테이블의 데이터 복사 하기
 ```sql
 insert into groceries (
-  select item_pk as grocery_pk, member_pk, name, enter, expire from items
+  select item_pk as grocery_pk, user_pk, name, enter, expire from items
 );
 ```
 
@@ -90,7 +90,7 @@ insert into groceries (
 
   ```sql
   insert into groceries (
-    select item_pk as grocery_pk, member_pk, name, enter, expire from items
+    select item_pk as grocery_pk, user_pk, name, enter, expire from items
     where item_pk = 1
   );
   ```

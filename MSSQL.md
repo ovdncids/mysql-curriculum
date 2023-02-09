@@ -11,7 +11,7 @@
 * `LEAD`: 다음 행의 데이터를 조회
 ```sql
 SELECT
-  members.*
+  users.*
   , LAG(name, 1) OVER (ORDER BY name)
   , LEAD(name, 1, '') OVER (ORDER BY name)
   --, LAG(name, 1) OVER (PARTITION BY name ORDER BY name)
@@ -26,15 +26,15 @@ FROM (
   SELECT '박지삼', 22
   UNION ALL
   SELECT '권명순', 10
-) members;
+) users;
 ```
 * `PARTITION BY`: `GROUP BY`라고 생각하면 쉽다.
 
 ## 마지막 PK 번호 넣기
 * 일반 적인 경우
 ```sql
-INSERT INTO members(member_pk, name, age) VALUES(
-  (SELECT ISNULL(MAX(member_pk) + 1, 1) FROM members),
+INSERT INTO users(user_pk, name, age) VALUES(
+  (SELECT ISNULL(MAX(user_pk) + 1, 1) FROM users),
   '김유신',
   63
 );
@@ -42,8 +42,8 @@ INSERT INTO members(member_pk, name, age) VALUES(
 
 * bigint인 경우
 ```sql
-INSERT INTO members(member_pk, name, age) VALUES(
-  ISNULL((SELECT TOP 1 member_pk FROM members ORDER BY LEN(member_pk) DESC, member_pk DESC) + 1, 1),
+INSERT INTO users(user_pk, name, age) VALUES(
+  ISNULL((SELECT TOP 1 user_pk FROM users ORDER BY LEN(user_pk) DESC, user_pk DESC) + 1, 1),
   '김유신',
   63
 );
@@ -52,7 +52,7 @@ INSERT INTO members(member_pk, name, age) VALUES(
 ## FOR JSON AUTO
 ```sql
 SELECT
-  members.*
+  users.*
 FROM (
   SELECT '홍길동' AS name, 39 AS age
   UNION ALL
@@ -63,7 +63,7 @@ FROM (
   SELECT '박지삼', 22
   UNION ALL
   SELECT '권명순', 10
-) members
+) users
 FOR JSON AUTO;
 ```
 ```json
@@ -93,7 +93,7 @@ SELECT * FROM (
     , ROW_NUMBER() OVER (ORDER BY idx_num ASC) AS ROW_NUM            /* 몇 페이지의 몇 개의 레코드를 부를때 사용 */
     , ROW_NUMBER() OVER (ORDER BY idx_num DESC) AS ROW_NUM_REVERSE   /* 리스트에서 번호로 사용 */
     , COUNT(*) OVER() AS PG_CNT_
-  FROM member_table
+  FROM user_table
 ) A
 WHERE ROW_NUM BETWEEN 1 AND 5 ORDER BY idx_num DESC
 ```

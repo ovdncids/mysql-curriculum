@@ -87,7 +87,7 @@ const db = global.db;
 
 router.post('/', function(req, res) {
   const sql = `
-    insert into items(member_pk, name, enter, expire)
+    insert into items(user_pk, name, enter, expire)
     values (
       1,
       ?,
@@ -115,7 +115,7 @@ router.get('/', function(req, res) {
   const orderType = req.query.orderType || 'asc';
   const sql = `
     select * from items
-    where member_pk = 1
+    where user_pk = 1
     order by ? ?;
   `;
   db.query(sql, [orderName, orderType], function(error, rows) {
@@ -135,7 +135,7 @@ router.get('/', function(req, res) {
 router.delete('/:items_pk', function(req, res) {
   const sql = `
     delete from items
-    where items_pk = ? and member_pk = 1;
+    where items_pk = ? and user_pk = 1;
   `;
   db.query(sql, [req.params.items_pk], function(error, rows) {
     if (error) return db.error(req, res, error);
@@ -153,7 +153,7 @@ router.patch('/:items_pk', function(req, res) {
   const sql = `
     update items
     set expire = ?
-    where items_pk = ? and member_pk = 1;
+    where items_pk = ? and user_pk = 1;
   `;
   db.query(sql, [req.body.expire, req.params.items_pk], function(error, rows) {
     if (error) return db.error(req, res, error);
@@ -172,12 +172,12 @@ router.patch('/:items_pk', function(req, res) {
 router.get('/', function(req, res) {
   const q = req.query.q || '';
   const sql = `
-    select * from members
+    select * from users
     where ? = '' or name like concat('%', ?, '%')
   `;
   db.query(sql, [q, q], function(error, rows) {
     if (error) return db.error(req, res, error);
-    console.log('Done members search', rows);
+    console.log('Done users search', rows);
     res.status(200).send({
       result: 'Searched',
       items: rows
