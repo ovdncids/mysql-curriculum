@@ -187,6 +187,26 @@ router.get('/', function(req, res) {
 ```
 * https://dongram.tistory.com/12
 
+## Node MySQL 2 (Promise)
+* https://github.com/sidorares/node-mysql2
+```sh
+npm install mysql2
+```
+```js
+const main = async function() {
+  const mysql = require('mysql2/promise');
+  const connection = await mysql.createConnection({
+    host: 'localhost',
+    user: 'user',
+    password: 'password',
+    database: 'test'
+  });
+  const [rows, fields] = await connection.execute(`
+    select * from users where name = ? and age = ?
+  `, ['홍길동', 39]);
+};
+```
+
 ## ER_NOT_SUPPORTED_AUTH_MODE
 * https://1mini2.tistory.com/88
 ```sql
