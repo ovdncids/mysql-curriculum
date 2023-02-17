@@ -17,7 +17,7 @@ const db = mysql.createPool({
   database: 'test'
 });
 
-db.query('select "Connected MySQL" as Result', null, function(error, rows) {
+db.query('select 123 as abc', null, function(error, rows) {
   console.error(error);
   console.log(rows);
 });
