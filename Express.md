@@ -122,7 +122,7 @@ router.get('/', function(req, res) {
     if (error) return db.error(req, res, error);
     console.log('Done items get', rows);
     res.status(200).send({
-      result: 'Readed',
+      result: 'Read',
       items: rows
     });
   });
