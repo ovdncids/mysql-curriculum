@@ -88,3 +88,10 @@ insert into users(user_pk, name, age) values (1, '홍길동', 39)
 on duplicate key update
 age = 40;
 ```
+
+```sql
+insert into users(user_pk, name, age)
+values (1, '홍길동', 39), (1, '김삼순', 33)
+on duplicate key update
+age = values(age);
+```
