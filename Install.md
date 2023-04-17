@@ -69,7 +69,7 @@ Login: user@localhost
 ```sh
 chmod 400 인증서.pem
 ```
-* 인증서 권한을 변경 한다.
+* 인증서 권한을 변경한다.
 
 ```sh
 ssh -i "인증서.pem" -f 사용자@AWS인증서버주소 -L 3307:AWS디비서버주소:3306 -N
