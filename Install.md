@@ -80,3 +80,12 @@ ssh -i "인증서.pem" -f 사용자@AWS인증서버주소 -L 3307:AWS디비서�
 ```sh
 mysql -h localhost -u 사용자 -p -P 3307
 ```
+
+## chown 없을 경우
+* https://superman28.tistory.com/29
+```sh
+vi ~/.zshrc
+
+# :/usr/sbin 추가
+export PATH=%PATH:/bin:/usr/local/bin:/usr/bin:/usr/sbin
+```
