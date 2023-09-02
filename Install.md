@@ -89,3 +89,6 @@ vi ~/.zshrc
 # :/usr/sbin 추가
 export PATH=%PATH:/bin:/usr/local/bin:/usr/bin:/usr/sbin
 ```
+
+## Host 'IP' is not allowed to connect to this MariaDB server
+* https://java119.tistory.com/61
