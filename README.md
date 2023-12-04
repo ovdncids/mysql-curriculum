@@ -13,3 +13,5 @@
 * [Paging](Paging.md)
 
 * [ERD](ERD.md)
+
+* [권한](Grant.md)
