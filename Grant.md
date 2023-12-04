@@ -15,6 +15,7 @@ bind-address            = 0.0.0.0
 ```
 
 ## 사용자 IP 허용
+* https://java119.tistory.com/61
 ```sql
 # 권한 확인
 SELECT Host, User, plugin, authentication_string FROM mysql.user;
