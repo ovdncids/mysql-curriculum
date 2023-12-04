@@ -9,9 +9,9 @@ vi /opt/homebrew/etc/my.cnf.default
 sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
 ```
 ```sh
-# bind-address            = 127.0.0.1
+# bind-address = 127.0.0.1
 ## 주석 처리 또는
-bind-address            = 0.0.0.0
+bind-address = 0.0.0.0
 ```
 
 ## 사용자 IP 허용
