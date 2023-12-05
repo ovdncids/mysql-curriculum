@@ -206,3 +206,11 @@ const main = async function() {
   `, ['홍길동', 39]);
 };
 ```
+
+## ER_NOT_SUPPORTED_AUTH_MODE
+* https://1mini2.tistory.com/88
+* [권한](https://github.com/ovdncids/mysql-curriculum/blob/master/Grant.md#%EC%82%AC%EC%9A%A9%EC%9E%90-ip-%ED%97%88%EC%9A%A9)
+```diff
+- host: 'localhost',
++ host: '127.0.0.1',
+```
