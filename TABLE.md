@@ -4,13 +4,18 @@
 ```sql
 # Database 목록 보기
 show databases;
-  # 권한이 있는 Database를 보여준다.
+## 권한이 있는 Database만 보여준다.
+
+# test Database 생성
 create database test;
-  # test Database이 없을 경우 생성한다.
+## test Database이 없을 경우 생성한다.
+## create database test default character set utf8;
+
+# test Database 사용
 use test;
-  # test Database에 접근한다.
+
+# test Database 가지고 있는 Table 목록 보기
 show tables;
-  # test Database가 가지고 있는 Table을 보여준다.
 ```
 
 ## 테이블 만들기(create table문)
