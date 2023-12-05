@@ -48,14 +48,5 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 CREATE USER 'test'@'localhost' IDENTIFIED BY '패스워드';
 ```
 
-## Node - ER_NOT_SUPPORTED_AUTH_MODE
-* https://1mini2.tistory.com/88
-```sql
-USE mysql;
-
-SELECT Host, User, plugin, authentication_string FROM mysql.user;
-# caching_sha2_password -> mysql_native_password 변경되었는지 확인
-
-ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '1234';
-FLUSH PRIVILEGES;
-```
+## 권한 실수로 MySQL 삭제
+* https://geondev.github.io/mariadb-db-remove-m1
