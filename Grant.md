@@ -48,5 +48,5 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 CREATE USER 'test'@'localhost' IDENTIFIED BY '패스워드';
 ```
 
-## 권한 실수로 MySQL 삭제
+## 권한 실수로 MariaDB 삭제
 * https://geondev.github.io/mariadb-db-remove-m1
