@@ -23,9 +23,7 @@ SELECT Host, User, plugin, authentication_string FROM mysql.user;
 # 모든 IP 허용
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '패스워드';
 ## `Grant_priv 권한`만 들어가지 않는다.
-
-# 특정 IP 대역 허용
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.10.0.%' IDENTIFIED BY '패스워드';
+## 'root'@'172.10.0.%' = 특정 IP 대역 허용
 
 # IP 삭제
 DELETE FROM mysql.user WHERE Host='%' AND User='root';
