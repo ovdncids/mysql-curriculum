@@ -29,6 +29,8 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.10.0.%' IDENTIFIED BY '패스워드';
 
 # IP 삭제
 DELETE FROM mysql.user WHERE Host='%' AND User='root';
+
+# 권한 즉시 적용
 FLUSH PRIVILEGES;
 ```
 
