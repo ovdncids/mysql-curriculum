@@ -2,7 +2,10 @@
 ## 외부 접속 허용
 * [my.cnf 위치](https://docs.3rdeyesys.com/database/ncloud_database_mysql_mariadb_config_my_cnf.html#mysql)
 ```sh
-# Mac
+# Mac - MySQL
+vi /opt/homebrew/etc/my.cnf
+
+# Mac - MariaDB
 vi /opt/homebrew/etc/my.cnf.default
 
 # Ubuntu, Raspberry Pi
