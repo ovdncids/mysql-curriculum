@@ -17,7 +17,7 @@ sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
 bind-address = 0.0.0.0
 ```
 
-### DBeaver에서 public key retrieval is not allowed 발생하는 경우
+### DBeaver에서 Public Key Retrieval is not allowed 발생하는 경우
 ```sh
 Connection 창 > Driver properties > allowPublicKeyRetrieval > True
 ```
@@ -52,7 +52,7 @@ FLUSH PRIVILEGES;
 CREATE DATABASE test DEFAULT CHARACTER SET utf8;
 
 # test 개정 생성
-CREATE USER 'test'@'%' identified by '패스워드';
+CREATE USER 'test'@'%' identified by '패스워드';
 
 # test 개정에 test DB 사용 권한 허용
 GRANT ALL PRIVILEGES ON test.* TO 'test'@'%';
