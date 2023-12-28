@@ -27,7 +27,7 @@ create table users (
 ) charset = utf8;
 
 alter table users convert to character set utf8mb4;
--- utf8mb4는 이모지 글자도 저장 가능하다.
+-- utf8mb4는 이모지(🙂)도 저장 가능하다.
 ```
 
 ### 테이블 삭제(drop table문)
