@@ -189,7 +189,6 @@ router.get('/', function(req, res) {
 
 ## Node MySQL 2 (Promise)
 * https://github.com/sidorares/node-mysql2
-* [Can't add new command when connection is in closed state](https://greedthread.github.io/2021/03/09/Mysql2-%EB%AA%A8%EB%93%88%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EC%9E%A5%EC%8B%9C%EA%B0%84-%EC%BC%9C%EB%86%93%EC%9D%84%EC%8B%9C-%EC%BB%A4%EB%84%A5%EC%85%98-%EC%98%88%EC%99%B8%EA%B0%80-%EB%B0%9C%EC%83%9D%ED%95%98%EB%8A%94-%EC%9D%B4%EC%8A%88.html)
 ```sh
 npm install mysql2
 ```
@@ -201,14 +200,23 @@ const main = async function() {
     user: 'user',
     password: 'password',
     database: 'test',
-    enableKeepAlive: true
+
+    waitForConnections: true,
+    connectionLimit: 10,
+    maxIdle: 10,
+    idleTimeout: 60000,
+    queueLimit: 0,
+    enableKeepAlive: true,
+    keepAliveInitialDelay: 0
   });
   const [rows, fields] = await connection.execute(`
     select * from users where name = ? and age = ?
   `, ['홍길동', 39]);
 };
 ```
-* `enableKeepAlive`는 pool이 계속 살아있게 한다.
+* [Can't add new command when connection is in closed state](https://greedthread.github.io/2021/03/09/Mysql2-%EB%AA%A8%EB%93%88%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EC%9E%A5%EC%8B%9C%EA%B0%84-%EC%BC%9C%EB%86%93%EC%9D%84%EC%8B%9C-%EC%BB%A4%EB%84%A5%EC%85%98-%EC%98%88%EC%99%B8%EA%B0%80-%EB%B0%9C%EC%83%9D%ED%95%98%EB%8A%94-%EC%9D%B4%EC%8A%88.html)
+* `waitForConnections`부터 `enableKeepAlive`까지는 pool이 계속 살아있게 한다.
+
 
 ## ER_NOT_SUPPORTED_AUTH_MODE
 * https://1mini2.tistory.com/88
