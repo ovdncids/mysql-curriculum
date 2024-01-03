@@ -14,4 +14,4 @@
 
 * [ERD](ERD.md)
 
-* [권한](Grant.md)
+* [권한, 백업](GrantDump.md)
