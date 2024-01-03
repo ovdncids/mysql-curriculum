@@ -60,3 +60,8 @@ GRANT ALL PRIVILEGES ON test.* TO 'test'@'%';
 
 ## 권한 실수로 MariaDB 완전 삭제
 * https://geondev.github.io/mariadb-db-remove-m1
+
+# 백업
+```sh
+DBeaver > Databases > {백업할 DB} > 도구 > Dump database > DB와 Table 선택 후 다음 > Output folder 선택 후 Start
+```
