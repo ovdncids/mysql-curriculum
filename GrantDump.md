@@ -49,7 +49,7 @@ FLUSH PRIVILEGES;
 ## test 사용자에게 test DB 사용 권한 허용
 ```sql
 # test DB 생성
-CREATE DATABASE test DEFAULT CHARACTER SET utf8;
+CREATE DATABASE test DEFAULT CHARACTER SET utf8mb4;
 
 # test 개정 생성
 CREATE USER 'test'@'%' identified by '패스워드';
