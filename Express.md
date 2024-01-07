@@ -188,32 +188,7 @@ router.get('/', function(req, res) {
 * https://dongram.tistory.com/12
 
 ## Node MySQL 2 (Promise)
-* https://github.com/sidorares/node-mysql2
-```sh
-npm install mysql2
-```
-```js
-const main = async function() {
-  const mysql = require('mysql2/promise');
-  const connection = await mysql.createConnection({
-    host: 'localhost',
-    user: 'user',
-    password: 'password',
-    database: 'test',
-
-    connectionLimit: 1,
-    maxIdle: 1,
-    enableKeepAlive: true
-  });
-  const [rows, fields] = await connection.execute(`
-    select * from users where name = ? and age = ?
-  `, ['홍길동', 39]);
-};
-```
-* [Can't add new command when connection is in closed state](https://greedthread.github.io/2021/03/09/Mysql2-%EB%AA%A8%EB%93%88%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EC%9E%A5%EC%8B%9C%EA%B0%84-%EC%BC%9C%EB%86%93%EC%9D%84%EC%8B%9C-%EC%BB%A4%EB%84%A5%EC%85%98-%EC%98%88%EC%99%B8%EA%B0%80-%EB%B0%9C%EC%83%9D%ED%95%98%EB%8A%94-%EC%9D%B4%EC%8A%88.html)
-* [Next.js with MySQL 2](https://docs.pingcap.com/tidb/stable/dev-guide-sample-application-nextjs)
-* `waitForConnections`부터 `enableKeepAlive`까지는 pool이 계속 살아있게 한다.
-
+* [MySQL2 연결](https://github.com/ovdncids/react-curriculum/blob/master/Next-js-13.4.md#mysql2-%EC%97%B0%EA%B2%B0)
 
 ## ER_NOT_SUPPORTED_AUTH_MODE
 * https://1mini2.tistory.com/88
