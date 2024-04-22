@@ -53,6 +53,8 @@ CREATE DATABASE test DEFAULT CHARACTER SET utf8mb4;
 
 # test 개정 생성
 CREATE USER 'test'@'%' identified by '패스워드';
+# test 패스워드 변경
+GRANT usage on *.* to 'test'@'%' identified by '패스워드';
 
 # test 개정에 test DB 사용 권한 허용
 GRANT ALL PRIVILEGES ON test.* TO 'test'@'%';
