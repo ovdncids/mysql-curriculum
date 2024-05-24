@@ -31,13 +31,11 @@ left join items i on u.user_pk = i.user_pk;
 ### JSON으로 출력 (JSON 형식의 문자로 출력됨)
 * https://velog.io/@nextlinehappy516/Mysql-JSON-%ED%98%95%ED%83%9C%EB%A1%9C-%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0
 ```sql
-select u.*, json_object(
-  'items', if(isnull(i.item_pk), '[]', json_arrayagg(
-    json_object(
-      'item_pk', i.item_pk, 'name', i.name
-    )
-  ))
-) as items
+select u.*, if(isnull(i.item_pk), '[]', json_arrayagg(
+  json_object(
+    'item_pk', i.item_pk, 'name', i.name
+  )
+)) as items
 from users u
 left join items i on u.user_pk = i.user_pk
 group by u.user_pk;
