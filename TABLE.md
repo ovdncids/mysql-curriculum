@@ -93,7 +93,8 @@ insert into users_copy (
 ## 데이터가 없을 경우 생성문, 있을 경우 수정문
 * https://stackoverflow.com/questions/4205181/insert-into-a-mysql-table-or-update-if-exists
 ```sql
-insert into users(user_pk, name, age) values (1, '홍길동', 39)
+insert into users(user_pk, name, age)
+values (1, '홍길동', 39)
 on duplicate key update
 age = 40;
 ```
