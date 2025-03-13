@@ -54,20 +54,20 @@ select last_insert_id();
 select * from users;
 ```
 
+### 삭제(delete from문)
+```sql
+delete from users where user_pk = 2;
+delete from users;
+```
+* ❕ 중요: 이전 버전의 MySQL에서는 where문 없이 실행 가능 했다. where문이 없을 경우 모든 데이터가 삭제 된다.
+
 ### 수정(update문)
 ```sql
 update users set age = 33 where user_pk = 2;
 update users set age = 33 where 1 = 1;
 update users set age = 33;
 ```
-* ❕ 중요: 이전 버전의 MySQL에서는 where문 없이 실행 가능 했다. where문이 없을 경우 모든 데이터가 수정 된다.
 * ❔ `name`과 `age` 둘다 수정 하려면
-
-### 삭제(delete from문)
-```sql
-delete from users where user_pk = 2;
-delete from users;
-```
 
 ### 테이블 안에 데이터 전부 삭제 및 초기화(drop table문)
 ```sql
