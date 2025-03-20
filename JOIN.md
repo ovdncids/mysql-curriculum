@@ -54,9 +54,9 @@ values (1, '사과', '2022-01-01', '2022-01-15');
 
 ## users 테이블과 items 테이블 조인 하기(join문)
 ```sql
-select * from users m inner join items i on m.user_pk = i.user_pk;
-select * from users m left outer join items i on m.user_pk = i.user_pk;
-select * from users m right outer join items i on m.user_pk = i.user_pk;
+select * from users u inner join items i on u.user_pk = i.user_pk;
+select * from users u left outer join items i on u.user_pk = i.user_pk;
+select * from users u right outer join items i on u.user_pk = i.user_pk;
 ```
 
 ## groceries 테이블 만들기
