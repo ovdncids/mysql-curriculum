@@ -14,3 +14,9 @@ status : failure -test failed: ora-00604: error occurred at recursive sql level 
 Oracle SQL Developer > 재실행 후 재접속
 SQL Developer > Oracle 접속 후 > 언어 및 지역 복구
 ```
+
+## 해당 SCHEMA로 이동
+```sql
+# use 디비명 (동일)
+ALTER SESSION SET CURRENT_SCHEMA = 스키마명;
+```
