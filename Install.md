@@ -96,11 +96,17 @@ export PATH=%PATH:/bin:/usr/local/bin:/usr/bin:/usr/sbin
 ## MySQL root 권한으로 접속 할 수 없을 경우
 ```sh
 # mysql.server 또는 mysqld 종료
-mysqld_safe --skip-grant-tables
-  # 3306 포트를 열지 않는다.
+sudo mysqld --skip-grant-tables --skip-networking --user=mysql &
+  # --skip-grant-tables 비밀번호를 묻지 않는다.
+  # --skip-networking 3306 포트를 열지 않는다.
 
 mysql -u root
   # root로 접속 비번을 묻지 않는다.
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'rootpassword';
+UPDATE mysql.user SET plugin = 'caching_sha2_password' WHERE user = 'root' AND host = 'localhost';
+  # 위에 ALTER USER ... 안되면 실행
+FLUSH PRIVILEGES;
 
 # 권한 작업 후에 mysqld_safe 종료
 # mysql.server 또는 mysqld 실행
