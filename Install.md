@@ -91,4 +91,17 @@ export PATH=%PATH:/bin:/usr/local/bin:/usr/bin:/usr/sbin
 ```
 
 ## Host 'IP' is not allowed to connect to this MariaDB server
-* [권한](https://github.com/ovdncids/mysql-curriculum/blob/master/Grant.md#%EC%82%AC%EC%9A%A9%EC%9E%90-ip-%ED%97%88%EC%9A%A9)
+* [권한](https://github.com/ovdncids/mysql-curriculum/blob/master/GrantDump.md#%EC%83%88%EB%A1%9C%EC%9A%B4-root-%EA%B3%84%EC%A0%95%EC%97%90-%EB%AA%A8%EB%93%A0-ip-%EB%AA%A8%EB%93%A0-db-%EC%82%AC%EC%9A%A9-%EA%B6%8C%ED%95%9C-%ED%97%88%EC%9A%A9)
+
+## MySQL root 권한으로 접속 할 수 없을 경우
+```sh
+# mysql.server 또는 mysqld 종료
+mysqld_safe --skip-grant-tables
+  # 3306 포트를 열지 않는다.
+
+mysql -u root
+  # root로 접속 비번을 묻지 않는다.
+
+# 권한 작업 후에 mysqld_safe 종료
+# mysql.server 또는 mysqld 실행
+```
