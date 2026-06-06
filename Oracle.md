@@ -3,6 +3,19 @@
 ## Oracle SQL Developer
 * https://www.oracle.com/tools/downloads/sqldev-downloads.html
 
+## Docker
+* https://hub.docker.com/r/gvenzl/oracle-free?uuid=85375817-eaf6-4776-8a29-b39336fba14b
+```sh
+docker run --name oracle -d -p 1521:1521 -e ORACLE_PASSWORD=1234 gvenzl/oracle-free:23.26.2
+
+# Host: localhost
+# Database: FREEPDB1
+# Username: system
+
+# 버전 확인
+SELECT * FROM v$version;
+```
+
 ## Mac 접속중 에러
 status : failure -test failed: ora-00604: error occurred at recursive sql level 1 ora-01756: quoted string not properly terminated
 * https://proni.tistory.com/entry/%E2%9C%85-Solved-oracle-sqldeveloper-%EC%97%B0%EA%B2%B0-%EC%8B%9C-%EC%97%90%EB%9F%AC-at-Mac
