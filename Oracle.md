@@ -16,6 +16,29 @@ docker run --name oracle -d -p 1521:1521 -e ORACLE_PASSWORD=1234 gvenzl/oracle-f
 SELECT * FROM v$version;
 ```
 
+### 사용자 생성와 DB 생성
+```sh
+# Docker Desktop > Containers > oracle > Exec
+sh-4.4$ (Shell 접속 완료)
+createAppUser test 1234 FREEPDB1;
+
+# SQL Plus
+sqlplus test/1234@FREEPDB1
+
+# 현재 접속한 사용자
+SELECT USER FROM dual;
+
+# 현재 접속한 DB
+SELECT SYS_CONTEXT('USERENV','CON_NAME') AS CURRENT_PDB
+FROM dual;
+
+# Table 생성
+CREATE TABLE USERS (
+  NAME VARCHAR(200) NOT NULL,
+  AGE INT NULL
+);
+```
+
 ## Mac 접속중 에러
 status : failure -test failed: ora-00604: error occurred at recursive sql level 1 ora-01756: quoted string not properly terminated
 * https://proni.tistory.com/entry/%E2%9C%85-Solved-oracle-sqldeveloper-%EC%97%B0%EA%B2%B0-%EC%8B%9C-%EC%97%90%EB%9F%AC-at-Mac
