@@ -53,7 +53,8 @@ SQL Developer > Oracle 접속 후 > 언어 및 지역 복구
 ## 해당 SCHEMA로 이동
 ```sql
 # use 디비명 (동일)
-
+ALTER SESSION SET CURRENT_SCHEMA = 스키마명;
+```
 
 <!--
 CREATE TABLE TEST_PK (
@@ -82,5 +83,3 @@ SET A = CASE
         END
 WHERE (A, B) IN ((1,1), (2,2));
 -->
-ALTER SESSION SET CURRENT_SCHEMA = 스키마명;
-```
