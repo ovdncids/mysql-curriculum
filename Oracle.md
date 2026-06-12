@@ -53,5 +53,34 @@ SQL Developer > Oracle 접속 후 > 언어 및 지역 복구
 ## 해당 SCHEMA로 이동
 ```sql
 # use 디비명 (동일)
+
+
+<!--
+CREATE TABLE TEST_PK (
+  A VARCHAR(200) NOT NULL,
+  B VARCHAR(200) NOT NULL,
+  TEMP VARCHAR(200) NOT NULL,
+  CONSTRAINT PK_TEST_PK PRIMARY KEY (A, B, TEMP)
+);
+
+SELECT * FROM TEST_PK;
+
+INSERT INTO TEST_PK (A, B, TEMP) VALUES ('1', '1', 'REAL1');
+INSERT INTO TEST_PK (A, B, TEMP) VALUES ('2', '2', 'REAL2');
+INSERT INTO TEST_PK (A, B, TEMP) VALUES ('3', '3', 'REAL3');
+
+UPDATE TEST_PK SET TEMP = 'REAL2' WHERE A = '2' AND B = '2';
+
+UPDATE TEST_PK
+SET A = CASE
+            WHEN A = 1 AND B = 1 THEN 2
+            WHEN A = 2 AND B = 2 THEN 1
+        END,
+    B = CASE
+            WHEN A = 2 AND B = 2 THEN 1
+            WHEN A = 1 AND B = 1 THEN 2
+        END
+WHERE (A, B) IN ((1,1), (2,2));
+-->
 ALTER SESSION SET CURRENT_SCHEMA = 스키마명;
 ```
