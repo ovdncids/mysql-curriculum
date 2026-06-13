@@ -38,6 +38,48 @@ CREATE TABLE USERS (
 );
 ```
 
+## 해당 SCHEMA로 이동
+```sql
+# use 디비명 (동일)
+ALTER SESSION SET CURRENT_SCHEMA = 스키마명;
+```
+
+## 복합 기본 키(Composite Primary Key) 스왑(Swap)
+```sql
+DROP TABLE TEST_PK;
+
+CREATE TABLE TEST_PK (
+  A INT NOT NULL,
+  B INT NOT NULL,
+  NAME VARCHAR(200) NOT NULL,
+  CONSTRAINT PK_TEST_PK PRIMARY KEY (A, B)
+);
+
+INSERT INTO TEST_PK (A, B, NAME) VALUES ('1', '2', '홍길동');
+INSERT INTO TEST_PK (A, B, NAME) VALUES ('3', '4', '이순신');
+
+-- 동일한 복합 기본 키로 변경 (오류 발생)
+UPDATE TEST_PK SET A = '3', B = '4' WHERE NAME = '홍길동';
+
+UPDATE TEST_PK
+SET
+	A = CASE
+	        WHEN A = 1 AND B = 2 THEN 3
+	        WHEN A = 3 AND B = 4 THEN 1
+	    END,
+	B = CASE
+	        WHEN A = 1 AND B = 2 THEN 4
+	        WHEN A = 3 AND B = 4 THEN 2
+	    END
+WHERE 1 = 1
+	AND (A, B) IN (
+		(1, 2), (3, 4)
+);
+
+-- 스왑 완료 확인
+SELECT * FROM TEST_PK;
+```
+
 ## Mac 접속중 에러
 status : failure -test failed: ora-00604: error occurred at recursive sql level 1 ora-01756: quoted string not properly terminated
 * https://proni.tistory.com/entry/%E2%9C%85-Solved-oracle-sqldeveloper-%EC%97%B0%EA%B2%B0-%EC%8B%9C-%EC%97%90%EB%9F%AC-at-Mac
@@ -49,37 +91,3 @@ status : failure -test failed: ora-00604: error occurred at recursive sql level 
 Oracle SQL Developer > 재실행 후 재접속
 SQL Developer > Oracle 접속 후 > 언어 및 지역 복구
 ```
-
-## 해당 SCHEMA로 이동
-```sql
-# use 디비명 (동일)
-ALTER SESSION SET CURRENT_SCHEMA = 스키마명;
-```
-
-<!--
-CREATE TABLE TEST_PK (
-  A VARCHAR(200) NOT NULL,
-  B VARCHAR(200) NOT NULL,
-  TEMP VARCHAR(200) NOT NULL,
-  CONSTRAINT PK_TEST_PK PRIMARY KEY (A, B, TEMP)
-);
-
-SELECT * FROM TEST_PK;
-
-INSERT INTO TEST_PK (A, B, TEMP) VALUES ('1', '1', 'REAL1');
-INSERT INTO TEST_PK (A, B, TEMP) VALUES ('2', '2', 'REAL2');
-INSERT INTO TEST_PK (A, B, TEMP) VALUES ('3', '3', 'REAL3');
-
-UPDATE TEST_PK SET TEMP = 'REAL2' WHERE A = '2' AND B = '2';
-
-UPDATE TEST_PK
-SET A = CASE
-            WHEN A = 1 AND B = 1 THEN 2
-            WHEN A = 2 AND B = 2 THEN 1
-        END,
-    B = CASE
-            WHEN A = 2 AND B = 2 THEN 1
-            WHEN A = 1 AND B = 1 THEN 2
-        END
-WHERE (A, B) IN ((1,1), (2,2));
--->
