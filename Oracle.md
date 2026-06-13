@@ -63,18 +63,20 @@ UPDATE TEST_PK SET A = '3', B = '4' WHERE NAME = '홍길동';
 
 UPDATE TEST_PK
 SET
-	A = CASE
-	        WHEN A = 1 AND B = 2 THEN 3
-	        WHEN A = 3 AND B = 4 THEN 1
-	    END,
-	B = CASE
-	        WHEN A = 1 AND B = 2 THEN 4
-	        WHEN A = 3 AND B = 4 THEN 2
-	    END
-WHERE 1 = 1
-	AND (A, B) IN (
-		(1, 2), (3, 4)
-);
+  A = CASE
+        WHEN A = 1 AND B = 2 THEN 3
+        WHEN A = 3 AND B = 4 THEN 1
+      END,
+  B = CASE
+      	WHEN A = 1 AND B = 2 THEN 4
+        WHEN A = 3 AND B = 4 THEN 2
+      END
+WHERE
+  (A, B) IN (
+    (1, 2),
+    (3, 4)
+  )
+;
 
 -- 스왑 완료 확인
 SELECT * FROM TEST_PK;
