@@ -81,6 +81,16 @@ WHERE
 -- 스왑 완료 확인
 SELECT * FROM TEST_PK;
 ```
+```xml
+<!-- List<Map<String, Object>> -->
+<update id="update" parameterType="list">
+  A = CASE
+    <foreach collection="list" item="row">
+      WHEN A = #{row.prevA} AND B = #{row.prevB} THEN #{row.A}
+    </foreach>
+    END
+</update>
+```
 
 ## Mac 접속중 에러
 status : failure -test failed: ora-00604: error occurred at recursive sql level 1 ora-01756: quoted string not properly terminated
