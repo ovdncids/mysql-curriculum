@@ -6,7 +6,7 @@
 ## Docker
 * https://hub.docker.com/r/gvenzl/oracle-free?uuid=85375817-eaf6-4776-8a29-b39336fba14b
 ```sh
-docker run --name oracle -d -p 1521:1521 -e ORACLE_PASSWORD=1234 gvenzl/oracle-free:23.26.2
+docker run --name oracle23 -d -p 1521:1521 -e ORACLE_PASSWORD=1234 gvenzl/oracle-free:23.26.2
 
 # Host: localhost
 # Database: FREEPDB1
