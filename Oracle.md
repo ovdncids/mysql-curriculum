@@ -3,7 +3,20 @@
 ## Oracle SQL Developer
 * https://www.oracle.com/tools/downloads/sqldev-downloads.html
 
-## Docker
+## Docker Oracle XE 11g Release 2
+* https://github.com/wnameless/docker-oracle-xe-11g?utm_source=chatgpt.com
+```sh
+docker pull wnameless/oracle-xe-11g-r2
+docker run --name oracle11g -d -p 49161:1521 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g-r2
+
+# Host: localhost
+# Port: 49161
+# SID: xe
+# Username: system 또는 sys
+# Password: oracle
+```
+
+## Docker Oracle 23.26.2 
 * https://hub.docker.com/r/gvenzl/oracle-free?uuid=85375817-eaf6-4776-8a29-b39336fba14b
 ```sh
 docker run --name oracle23 -d -p 1521:1521 -e ORACLE_PASSWORD=1234 gvenzl/oracle-free:23.26.2
