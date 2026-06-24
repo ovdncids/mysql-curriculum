@@ -23,7 +23,7 @@ sh-4.4$ (Shell 접속 완료)
 createAppUser test 1234 FREEPDB1;
 
 # SQL Plus
-sqlplus test/1234@FREEPDB1
+sqlplus test/1234@localhost:1521/FREEPDB1
 
 # 현재 접속한 사용자
 SELECT USER FROM dual;
