@@ -24,6 +24,7 @@ docker run --name oracle23 -d -p 1521:1521 -e ORACLE_PASSWORD=1234 gvenzl/oracle
 # Host: localhost
 # Database: FREEPDB1
 # Username: system
+# Password: 1234
 
 # 버전 확인
 SELECT * FROM v$version;
