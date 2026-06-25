@@ -15,6 +15,12 @@ docker run --name oracle11g -d -p 49161:1521 -e ORACLE_ALLOW_REMOTE=true wnamele
 # Username: system 또는 sys
 # Password: oracle
 ```
+```sh
+# Docker Desktop > Containers > oracle11g > Exec
+export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
+export PATH=$ORACLE_HOME/bin:$PATH
+sqlplus system/oracle@localhost:1521/xe
+```
 
 ## Docker Oracle 23.26.2 
 * https://hub.docker.com/r/gvenzl/oracle-free?uuid=85375817-eaf6-4776-8a29-b39336fba14b
@@ -32,7 +38,7 @@ SELECT * FROM v$version;
 
 ### 사용자 생성와 DB 생성
 ```sh
-# Docker Desktop > Containers > oracle > Exec
+# Docker Desktop > Containers > oracle23 > Exec
 sh-4.4$ (Shell 접속 완료)
 createAppUser test 1234 FREEPDB1;
 
