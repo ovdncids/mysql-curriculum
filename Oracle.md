@@ -16,9 +16,20 @@ docker run --name oracle11g -d -p 49161:1521 -e ORACLE_ALLOW_REMOTE=true wnamele
 # Password: oracle
 ```
 ```sh
-# Docker Desktop > Containers > oracle11g > Exec
-export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
-export PATH=$ORACLE_HOME/bin:$PATH
+# Docker Desktop > Containers > oracle11g > Exec (기본적으로 /bin/sh 실행)
+ps -p $$ -o args=
+env
+sqlplus
+ps -ef
+# PID 1은 컨테이너가 실행되면 기본 실행 된다. /bin/sh -c /usr/sbin/startup.sh && tail -f /dev/null
+# /usr/sbin/startup.sh 파일 시작이 `#!/bin/bash` 되어 있어 `export ORACLE_HOME`이 `/bin/sh`에 없다.
+/bin/bash
+env
+sqlplus system/oracle@localhost:1521/xe
+
+# 또는
+docker exec -it oracle11g env
+docker exec -it oracle11g /bin/bash
 sqlplus system/oracle@localhost:1521/xe
 ```
 
