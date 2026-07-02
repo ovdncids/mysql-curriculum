@@ -97,3 +97,9 @@ SELECT * FROM (
 ) A
 WHERE ROW_NUM BETWEEN 1 AND 5 ORDER BY idx_num DESC
 ```
+
+## MS-SQL 2022
+```sh
+docker run --name mssql2022 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Pass@1234" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest
+```
+* 비밀번호는 최소 `8자, 대문자, 소문자, 숫자, 특수문자`가 들어가야 서버가 실행 된다.
